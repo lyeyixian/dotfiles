@@ -21,6 +21,11 @@ so the real files live here (under version control) and `$HOME` just points at t
 Secrets, caches, history, and package-manager state are intentionally **not** tracked.
 All paths use `$HOME` / `~` so the configs are portable across machines and usernames.
 
+Two directories are **not** Stow packages and are set up manually (see below):
+
+- `Brewfile` — Homebrew tools + fonts, installed with `brew bundle`.
+- `iterm/` — iTerm2 color preset (`catppuccin-macchiato`), imported into iTerm2.
+
 ## Setup on a new machine
 
 ```sh
@@ -29,7 +34,7 @@ git clone https://github.com/lyeyixian/dotfiles ~/.dotfiles
 cd ~/.dotfiles
 
 # 2. Prerequisites
-brew install stow git tmux neovim          # core tools
+brew bundle --file ~/.dotfiles/Brewfile     # core tools + Nerd Font
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"   # oh-my-zsh
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
   "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"   # powerlevel10k
@@ -44,6 +49,18 @@ Then:
 - Open a new shell to load zsh / Powerlevel10k.
 - In tmux, press `prefix + I` to let `tpm` install the plugins.
 - On first launch, Neovim (LazyVim) will bootstrap its plugins automatically.
+
+### Terminal (iTerm2)
+
+The prompt, LazyVim and tmux all rely on Nerd Font glyphs and a matching color
+theme. `brew bundle` above installs the font; set it and the theme in iTerm2:
+
+1. **Font** — Settings (`⌘,`) → Profiles → *Text* → Font → **MesloLGS Nerd Font
+   Mono**. Leave *"Use a different font for non-ASCII text"* unchecked, or icons
+   render as `?`.
+2. **Theme** — Settings → Profiles → *Colors* → **Color Presets… → Import…**,
+   pick `iterm/catppuccin-macchiato.itermcolors` from this repo, then select
+   **catppuccin-macchiato** from the same dropdown.
 
 ## Usage
 
