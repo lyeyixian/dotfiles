@@ -22,5 +22,9 @@
   "theme": "dark",
   "editorMode": "normal",
   "verbose": false,
-  "preferredNotifChannel": "auto"
+  "preferredNotifChannel": "auto",
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  }
 }
