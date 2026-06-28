@@ -1,0 +1,8 @@
+# macOS
+.DS_Store
+
+# opencode: only track opencode.json, never the installed deps
+opencode/.config/opencode/node_modules/
+opencode/.config/opencode/bun.lock
+opencode/.config/opencode/package.json
+opencode/.config/opencode/.gitignore

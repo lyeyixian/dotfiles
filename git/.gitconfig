@@ -1,0 +1,66 @@
+[user]
+	name = Lye Yi Xian
+	email = lyeyx999@hotmail.com
+
+[init]
+	defaultBranch = main
+
+[core]
+	editor = code --wait
+	excludesfile = ~/.gitignore_global
+
+[color]
+	ui = auto
+
+[column]
+	ui = auto
+
+[branch]
+	sort = -committerdate
+
+[tag]
+	sort = version:refname
+
+[diff]
+	algorithm = histogram
+	colorMoved = default
+
+[merge]
+	conflictStyle = zdiff3
+
+[pull]
+	rebase = true
+
+[rebase]
+	autoStash = true
+	autosquash = true
+
+[fetch]
+	prune = true
+	pruneTags = true
+
+[push]
+	autoSetupRemote = true
+	followTags = true
+
+[commit]
+	verbose = true
+
+[help]
+	autocorrect = prompt
+
+[rerere]
+	enabled = true
+
+[alias]
+	st = status -sb
+	adog = log --all --decorate --oneline --graph
+	cm = commit -m
+	co = checkout
+	cob = checkout -b
+	del = branch -D
+	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+	undo = reset HEAD~1 --mixed
+	sync = pull origin main
+	conf = config --global -l
+	lg = log --pretty=format:'%C(brightgreen)%h%Creset -%C(auto)%d%Creset %s %C(dim green)(%cr) [%an]' --abbrev-commit -30 --graph --decorate
