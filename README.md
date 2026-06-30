@@ -43,6 +43,8 @@ git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions \
 git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git \
   "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"    # zsh-syntax-highlighting
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm  # tmux plugin manager
+PROFILE=/dev/null bash -c \
+  "curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.5/install.sh | bash"  # nvm (.zshrc already sources it)
 
 # 3. Symlink everything
 stow zsh git tmux nvim linearmouse opencode claude
