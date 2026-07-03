@@ -11,6 +11,7 @@ brew "gh"       # GitHub CLI
 brew "docker"   # docker CLI
 brew "httpie"   # human-friendly HTTP client
 brew "uv"       # Python package / project manager
+brew "tree"     # directory tree viewer
 
 # Applications
 cask "iterm2"
@@ -20,8 +21,11 @@ cask "claude"
 cask "claude-code@latest"
 cask "docker-desktop"
 cask "linearmouse"
+cask "bettercmdtab"
 cask "obsidian"
 cask "spotify"
+cask "telegram"
+cask "whatsapp"
 
 # Fonts — Nerd Font supplies the glyphs used by Powerlevel10k, LazyVim and the
 # tmux status bar. Without it those icons render as "?" or boxes.
