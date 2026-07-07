@@ -1,5 +1,5 @@
 {
-  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.4",
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.11.2",
   "schemes" : [
     {
       "if" : {
@@ -26,6 +26,45 @@
         },
         "speed" : {
           "vertical" : 10
+        }
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0x83",
+          "productName" : "Razer Basilisk X HyperSpeed",
+          "vendorID" : "0x1532"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 1,
+        "disableAcceleration" : true
+      },
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 1
+        },
+        "distance" : {
+          "vertical" : "auto"
+        },
+        "reverse" : {
+          "vertical" : true
+        },
+        "smoothed" : {
+          "vertical" : {
+            "acceleration" : 0.9200000000000002048,
+            "bouncing" : true,
+            "enabled" : true,
+            "inertia" : 0.42,
+            "preset" : "easeOutCubic",
+            "response" : 0.9399999999999997952,
+            "speed" : 1.0600000000000002048
+          }
+        },
+        "speed" : {
+          "vertical" : 0
         }
       }
     }
