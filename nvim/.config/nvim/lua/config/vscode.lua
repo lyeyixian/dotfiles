@@ -27,7 +27,7 @@ keymap.set("n", "<leader>e", action("workbench.view.explorer"), { desc = "Toggle
 keymap.set("n", "<leader>/", action("workbench.action.findInFiles"), { desc = "Search in files" })
 
 -- Code / LSP
-keymap.set("n", "<leader>ca", action("editor.action.quickFix"), { desc = "Code action" })
+keymap.set("n", "<leader>.", action("editor.action.quickFix"), { desc = "Code action" })
 keymap.set("n", "<leader>cr", action("editor.action.rename"), { desc = "Rename symbol" })
 keymap.set("n", "<leader>cf", action("editor.action.formatDocument"), { desc = "Format document" })
 keymap.set("n", "gr", action("editor.action.goToReferences"), { desc = "Go to references" })
