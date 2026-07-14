@@ -1,7 +1,7 @@
 {
-  "statusLine": {
-    "type": "command",
-    "command": "bash \"$HOME/.claude/statusline-command.sh\""
+  "attribution": {
+    "commit": "",
+    "pr": ""
   },
   "permissions": {
     "allow": [
@@ -18,13 +18,24 @@
   "worktree": {
     "baseRef": "fresh"
   },
+  "statusLine": {
+    "type": "command",
+    "command": "bash \"$HOME/.claude/statusline-command.sh\""
+  },
+  "extraKnownMarketplaces": {
+    "mattpocock": {
+      "source": {
+        "source": "github",
+        "repo": "mattpocock/skills"
+      }
+    }
+  },
   "effortLevel": "xhigh",
   "theme": "dark",
   "editorMode": "normal",
   "verbose": false,
   "preferredNotifChannel": "auto",
-  "attribution": {
-    "commit": "",
-    "pr": ""
+  "enabledPlugins": {
+    "mattpocock-skills@mattpocock": true
   }
 }
