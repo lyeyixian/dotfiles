@@ -16,7 +16,7 @@ so the real files live here (under version control) and `$HOME` just points at t
 | `nvim`        | `~/.config/nvim/`                                              | Neovim (LazyVim) config             |
 | `linearmouse` | `~/.config/linearmouse/linearmouse.json`                       | LinearMouse settings                |
 | `opencode`    | `~/.config/opencode/opencode.json`                             | opencode config                     |
-| `claude`      | `~/.claude/settings.json`, `~/.claude/statusline-command.sh`   | Claude Code settings + statusline   |
+| `claude`      | `~/.claude/CLAUDE.md`, `~/.claude/settings.json`, `~/.claude/statusline-command.sh` | Claude Code memory, settings + statusline |
 
 Secrets, caches, history, and package-manager state are intentionally **not** tracked.
 All paths use `$HOME` / `~` so the configs are portable across machines and usernames.
