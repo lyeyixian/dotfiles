@@ -13,14 +13,18 @@
       "Bash(git fetch *)",
       "Bash(gh label *)"
     ],
-    "defaultMode": "default"
+    "defaultMode": "acceptEdits"
   },
+  "model": "claude-fable-5[1m]",
   "worktree": {
     "baseRef": "fresh"
   },
   "statusLine": {
     "type": "command",
     "command": "bash \"$HOME/.claude/statusline-command.sh\""
+  },
+  "enabledPlugins": {
+    "mattpocock-skills@mattpocock": true
   },
   "extraKnownMarketplaces": {
     "mattpocock": {
@@ -31,11 +35,12 @@
     }
   },
   "effortLevel": "xhigh",
+  "autoMemoryEnabled": false,
   "theme": "dark",
-  "editorMode": "normal",
+  "editorMode": "vim",
   "verbose": false,
   "preferredNotifChannel": "auto",
-  "enabledPlugins": {
-    "mattpocock-skills@mattpocock": true
-  }
+  "remoteControlAtStartup": false,
+  "agentPushNotifEnabled": true,
+  "inputNeededNotifEnabled": true
 }
