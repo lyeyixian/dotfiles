@@ -13,6 +13,9 @@
       "Bash(git fetch *)",
       "Bash(gh label *)"
     ],
+    "deny": [
+      "AskUserQuestion"
+    ],
     "defaultMode": "acceptEdits"
   },
   "model": "claude-fable-5[1m]",
@@ -41,6 +44,6 @@
   "verbose": false,
   "preferredNotifChannel": "auto",
   "remoteControlAtStartup": false,
-  "agentPushNotifEnabled": true,
-  "inputNeededNotifEnabled": true
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true
 }
