@@ -16,9 +16,8 @@
     "deny": [
       "AskUserQuestion"
     ],
-    "defaultMode": "acceptEdits"
+    "defaultMode": "auto"
   },
-  "model": "claude-fable-5[1m]",
   "worktree": {
     "baseRef": "fresh"
   },
