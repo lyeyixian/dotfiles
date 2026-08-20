@@ -8,15 +8,15 @@ so the real files live here (under version control) and `$HOME` just points at t
 
 ## What's in here
 
-| Package       | Symlinks into                                                  | What it is                          |
-| ------------- | -------------------------------------------------------------- | ----------------------------------- |
-| `zsh`         | `~/.zshrc`, `~/.p10k.zsh`                                       | Zsh + Powerlevel10k prompt          |
-| `git`         | `~/.gitconfig`, `~/.gitignore_global`                          | Git config + global ignore patterns |
-| `tmux`        | `~/.tmux.conf`, `~/.gitmux.conf`                               | tmux + gitmux status bar            |
-| `nvim`        | `~/.config/nvim/`                                              | Neovim (LazyVim) config             |
-| `linearmouse` | `~/.config/linearmouse/linearmouse.json`                       | LinearMouse settings                |
-| `opencode`    | `~/.config/opencode/opencode.json`                             | opencode config                     |
-| `claude`      | `~/.claude/CLAUDE.md`, `~/.claude/settings.json`, `~/.claude/statusline-command.sh` | Claude Code memory, settings + statusline |
+| Package       | Symlinks into                                                                                            | What it is                                        |
+| ------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| `zsh`         | `~/.zshrc`, `~/.p10k.zsh`                                                                                | Zsh + Powerlevel10k prompt                        |
+| `git`         | `~/.gitconfig`, `~/.gitignore_global`                                                                    | Git config + global ignore patterns               |
+| `tmux`        | `~/.tmux.conf`, `~/.gitmux.conf`                                                                         | tmux + gitmux status bar                          |
+| `nvim`        | `~/.config/nvim/`                                                                                        | Neovim (LazyVim) config                           |
+| `linearmouse` | `~/.config/linearmouse/linearmouse.json`                                                                 | LinearMouse settings                              |
+| `opencode`    | `~/.config/opencode/opencode.json`                                                                       | opencode config                                   |
+| `claude`      | `~/.claude/CLAUDE.md`, `~/.claude/settings.json`, `~/.claude/statusline-command.sh`, `~/.claude/skills/` | Claude Code memory, settings, statusline + skills |
 
 Secrets, caches, history, and package-manager state are intentionally **not** tracked.
 All paths use `$HOME` / `~` so the configs are portable across machines and usernames.
@@ -62,10 +62,10 @@ Then:
 The prompt, LazyVim and tmux all rely on Nerd Font glyphs and a matching color
 theme. `brew bundle` above installs the font; set it and the theme in iTerm2:
 
-1. **Font** — Settings (`⌘,`) → Profiles → *Text* → Font → **MesloLGS Nerd Font
-   Mono**. Leave *"Use a different font for non-ASCII text"* unchecked, or icons
+1. **Font** — Settings (`⌘,`) → Profiles → _Text_ → Font → **MesloLGS Nerd Font
+   Mono**. Leave _"Use a different font for non-ASCII text"_ unchecked, or icons
    render as `?`.
-2. **Theme** — Settings → Profiles → *Colors* → **Color Presets… → Import…**,
+2. **Theme** — Settings → Profiles → _Colors_ → **Color Presets… → Import…**,
    pick `iterm/catppuccin-macchiato.itermcolors` from this repo, then select
    **catppuccin-macchiato** from the same dropdown.
 
