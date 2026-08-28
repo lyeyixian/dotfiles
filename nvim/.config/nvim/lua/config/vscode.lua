@@ -7,6 +7,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+-- Yank/delete/put go through the system clipboard.
+vim.opt.clipboard = "unnamedplus"
+
 -- Movement keymaps shared with terminal Neovim (jk, H/L, J/K).
 require("config.keymaps")
 
