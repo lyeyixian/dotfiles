@@ -65,3 +65,8 @@
 	conf = config --global -l
 	lg = log --pretty=format:'%C(brightgreen)%h%Creset -%C(auto)%d%Creset %s %C(dim green)(%cr) [%an]' --abbrev-commit -30 --graph --decorate
   please = push --force-with-lease
+
+# Per-machine overrides, not tracked. setup-linux.sh writes one that sets
+# core.editor to nvim.
+[include]
+	path = ~/.gitconfig.local

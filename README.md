@@ -1,7 +1,7 @@
 # dotfiles
 
-Config files for my macOS setup: zsh, git, tmux, Neovim, iTerm2, Claude Code, and a
-few smaller tools. [GNU Stow](https://www.gnu.org/software/stow/) wires them into
+Config files for my Mac and my Linux home server: zsh, git, tmux, Neovim, iTerm2,
+Claude Code, and a few smaller tools. [GNU Stow](https://www.gnu.org/software/stow/) wires them into
 `$HOME` as symlinks, so the real files stay here under version control and `$HOME`
 just points at them. Edit a file in this repo and the change is live immediately.
 
@@ -21,9 +21,12 @@ Read the tree that way and you always know where a file will land.
 | `opencode`    | `~/.config/opencode/opencode.json`                                                                      | opencode config                         |
 | `claude`      | `~/.claude/CLAUDE.md`, `~/.claude/settings.json`, `~/.claude/statusline-command.sh`, `~/.claude/skills/` | Claude Code memory, settings, skills    |
 
-Two things here are not Stow packages and need a manual step:
+Four things here are not Stow packages:
 
-- `Brewfile` lists the Homebrew tools, apps, and the Nerd Font. Install with `brew bundle`.
+- `setup-macos.sh` and `setup-linux.sh` do the whole setup on a fresh machine. They
+  run the small scripts in `setup/`, one per tool. See below.
+- `Brewfile` lists the Homebrew tools, apps, and the Nerd Font. `setup/macos/brew.sh`
+  installs it.
 - `iterm/catppuccin-macchiato.itermcolors` is an iTerm2 color preset you import from
   the app's settings.
 
@@ -32,76 +35,28 @@ Secrets, history, caches, and package-manager state are not tracked. Every path 
 
 ## Set up a new machine
 
-You need macOS, the Xcode command line tools (`xcode-select --install`), and
-[Homebrew](https://brew.sh). Everything else comes from the steps below.
-
-### 1. Clone
-
 Clone to `~/.dotfiles`. Stow links into the parent of the repo, so the location
 matters. If you keep it somewhere else, pass `-t ~` to every `stow` command.
 
 ```sh
 git clone https://github.com/lyeyixian/dotfiles ~/.dotfiles
-cd ~/.dotfiles
 ```
 
-### 2. Install the tools
+Then run the script for your OS. It runs the scripts in `setup/` in order and skips
+whatever is already done, so running it twice is fine.
+
+### macOS
+
+Needs the Xcode command line tools (`xcode-select --install`) and
+[Homebrew](https://brew.sh) first.
 
 ```sh
-brew bundle --file ~/.dotfiles/Brewfile
+~/.dotfiles/setup-macos.sh
 ```
 
-That covers stow, git, tmux, neovim, the apps, and MesloLGS Nerd Font. Drop any cask
-you don't want before running it.
-
-### 3. Install what the configs expect to find
-
-`.zshrc` loads oh-my-zsh, the Powerlevel10k theme, two zsh plugins, and nvm.
-`.tmux.conf` ends by running tpm. None of those live in this repo, so install them
-first or your first new shell will be full of errors.
-
-```sh
-# oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-# Powerlevel10k theme
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
-  "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
-
-# zsh plugins
-git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions \
-  "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
-git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git \
-  "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
-
-# tmux plugin manager
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-# nvm, latest release
-NVM_VER=$(curl -fsSL https://api.github.com/repos/nvm-sh/nvm/releases/latest \
-  | grep -oE '"tag_name": *"[^"]+"' | cut -d'"' -f4)
-PROFILE=/dev/null bash -c \
-  "curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/${NVM_VER}/install.sh | bash"
-```
-
-The oh-my-zsh installer writes its own `~/.zshrc`. That is fine, step 4 replaces it,
-but `stow zsh` will refuse to overwrite it, so delete or rename it first:
-`rm ~/.zshrc`.
-
-### 4. Link the configs
-
-```sh
-cd ~/.dotfiles
-stow -nv zsh git tmux nvim linearmouse opencode claude   # dry run, read the output
-stow zsh git tmux nvim linearmouse opencode claude       # do it
-```
-
-Skip any package you don't want. They are independent.
-
-### 5. Set up iTerm2
-
-Powerlevel10k, LazyVim, and the tmux status bar all draw Nerd Font glyphs. Without
-the right font you get `?` and empty boxes.
+iTerm2 has no config file worth tracking, so its two settings are by hand.
+Powerlevel10k, LazyVim, and the tmux status bar all draw Nerd Font glyphs, and
+without the font you get `?` and empty boxes.
 
 1. Font: Settings (`⌘,`) then Profiles, Text, Font, pick **MesloLGS Nerd Font Mono**.
    Leave "Use a different font for non-ASCII text" unchecked or the icons break.
@@ -109,18 +64,61 @@ the right font you get `?` and empty boxes.
    `~/.dotfiles/iterm/catppuccin-macchiato.itermcolors`, then select
    **catppuccin-macchiato** from that same dropdown.
 
-### 6. First run
+Open a new terminal window afterwards. If Powerlevel10k asks to run its wizard,
+say no. `~/.p10k.zsh` is already set up.
 
-- Open a new terminal window. Zsh and Powerlevel10k load from the linked `.zshrc`.
-  If the prompt asks to run the configuration wizard, say no. `~/.p10k.zsh` is
-  already set up.
-- Start tmux and press `Ctrl-Space` then `I` (capital i) to make tpm install its
-  plugins. The prefix is `Ctrl-Space`, not the default `Ctrl-b`.
-- Run `nvim`. LazyVim installs its plugins on first launch. Let it finish before you
-  start editing.
-- Run `nvm install --lts` if you want Node.
+### Linux (Debian or Ubuntu)
 
-### 7. Make it yours
+```sh
+~/.dotfiles/setup-linux.sh
+```
+
+It asks for your password twice, once for apt at the start and once for `chsh` at
+the end. Log out and back in when it finishes. The glyphs come from the terminal
+you ssh from, so the iTerm2 font step above still applies on the client.
+
+Linux gets zsh, git, tmux, nvim, and claude. linearmouse and opencode are Mac only.
+The Linux scripts also do a few things the Mac never needs. `.gitconfig` asks for
+VS Code as the editor, so `setup/linux/git-editor.sh` writes `core.editor = nvim`
+into `~/.gitconfig.local`. That file is included last, wins over anything above it,
+and is not tracked. The apt script generates the `en_US.UTF-8` locale, since Ubuntu
+ships without one and Nerd Font glyphs come out as `?` over ssh. It also links `fd`
+to Ubuntu's `fdfind`, the name Neovim's pickers look for. And `chsh` makes zsh the
+login shell, which a Mac has out of the box.
+
+### What the scripts do
+
+| Script                       | What it does                                                          |
+| ---------------------------- | --------------------------------------------------------------------- |
+| `setup/macos/brew.sh`        | `brew bundle` with the Brewfile                                       |
+| `setup/macos/extras.sh`      | `stow linearmouse opencode`                                           |
+| `setup/linux/apt.sh`         | apt packages (zsh, tmux, neovim, stow, ripgrep, fd, fzf, jq, a compiler) and the locale |
+| `setup/linux/git-editor.sh`  | writes `~/.gitconfig.local` with `core.editor = nvim`                 |
+| `setup/linux/login-shell.sh` | `chsh` to zsh                                                         |
+| `setup/common/node.sh`       | nvm and the current Node LTS                                          |
+| `setup/common/git.sh`        | `stow git`                                                            |
+| `setup/common/tmux.sh`       | tpm, `stow tmux`, installs the tmux plugins headless                  |
+| `setup/common/nvim.sh`       | `stow nvim`, installs the plugins pinned in `lazy-lock.json` headless |
+| `setup/common/claude.sh`     | `stow claude`, installs Claude Code if missing                        |
+| `setup/common/zsh.sh`        | oh-my-zsh, Powerlevel10k, the two plugins, `stow zsh`                 |
+
+They share `setup/helper/lib.sh`. Its `link` function is `stow -R` with one extra
+step. Stow refuses to overwrite a real file, and a fresh machine always has one in
+the way, so `link` first renames it with a `.pre-dotfiles` suffix. The oh-my-zsh
+installer's `~/.zshrc` is the usual victim.
+
+Each script works on its own once brew or apt has run, so
+`~/.dotfiles/setup/common/nvim.sh` is the way to redo just Neovim. `SKIP_BREW=1`
+skips the Brewfile and `SKIP_APT=1` skips apt.
+
+The claude script creates `~/.claude` as a real directory before stowing, so Stow
+links the files inside it one by one. If the directory itself were a symlink into
+this repo, Claude Code would write its history and caches here.
+
+The nvim script only installs the plugins. Mason and treesitter still finish on the
+first interactive launch, so let that run before you start editing.
+
+### Make it yours
 
 `git/.gitconfig` has my name and email in it. Change them before your first commit or
 every commit you make will be attributed to me:
@@ -134,7 +132,8 @@ Two other spots worth a look:
 
 - `git/.gitconfig` sets `core.editor = code --wait`. If you use VS Code, open its
   command palette and run "Shell Command: Install 'code' command in PATH". Otherwise
-  change it to `nvim`.
+  put `[core] editor = nvim` in `~/.gitconfig.local`, which is what the Linux setup
+  does.
 - `zsh/.zshrc` ends with `PATH` entries for a local postgres install and the .NET
   tools. Harmless if those aren't there, but they are mine, not yours.
 
@@ -186,7 +185,7 @@ Back it up or delete it, then run `stow` again. `stow -nv <package>` shows you w
 file before you touch anything.
 
 **Icons render as `?` or boxes.** The terminal font is not the Nerd Font. Go back to
-step 5, and check that the non-ASCII font override is off.
+the iTerm2 font step, and check that the non-ASCII font override is off.
 
 **The tmux status bar is plain or broken.** tpm has not installed the plugins yet.
 Press `Ctrl-Space` then `I` inside tmux.
