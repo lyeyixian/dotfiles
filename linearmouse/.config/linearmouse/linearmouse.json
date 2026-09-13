@@ -1,5 +1,5 @@
 {
-  "$schema" : "https:\/\/schema.linearmouse.app\/0.11.3",
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.11.4",
   "schemes" : [
     {
       "if" : {
@@ -21,11 +21,29 @@
         "distance" : {
           "vertical" : "auto"
         },
+        "modifiers" : {
+          "vertical" : {
+            "shift" : {
+              "type" : "alterOrientation"
+            }
+          }
+        },
         "reverse" : {
           "vertical" : true
         },
+        "smoothed" : {
+          "vertical" : {
+            "acceleration" : 0.9200000000000002048,
+            "bouncing" : true,
+            "enabled" : true,
+            "inertia" : 0.42,
+            "preset" : "easeOutCubic",
+            "response" : 0.9399999999999997952,
+            "speed" : 1.0600000000000002048
+          }
+        },
         "speed" : {
-          "vertical" : 10
+          "vertical" : 0
         }
       }
     },
