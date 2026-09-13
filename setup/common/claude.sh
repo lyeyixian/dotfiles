@@ -14,3 +14,13 @@ if command -v claude >/dev/null 2>&1; then
 else
   curl -fsSL https://claude.ai/install.sh | bash
 fi
+
+step "claude mcp servers"
+# User-scoped servers live in ~/.claude.json next to machine state, so they
+# can't be stowed. Register them here instead. OAuth sign-in is still manual:
+# run /mcp inside Claude Code once per machine.
+if claude mcp get linear >/dev/null 2>&1; then
+  echo "already added: linear"
+else
+  claude mcp add --transport http --scope user linear https://mcp.linear.app/mcp
+fi

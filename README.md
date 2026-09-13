@@ -99,7 +99,7 @@ login shell, which a Mac has out of the box.
 | `setup/common/git.sh`        | `stow git`                                                            |
 | `setup/common/tmux.sh`       | tpm, `stow tmux`, installs the tmux plugins headless                  |
 | `setup/common/nvim.sh`       | `stow nvim`, installs the plugins pinned in `lazy-lock.json` headless |
-| `setup/common/claude.sh`     | `stow claude`, installs Claude Code if missing                        |
+| `setup/common/claude.sh`     | `stow claude`, installs Claude Code if missing, adds the Linear MCP server |
 | `setup/common/zsh.sh`        | oh-my-zsh, Powerlevel10k, the two plugins, `stow zsh`                 |
 
 They share `setup/helper/lib.sh`. Its `link` function is `stow -R` with one extra
