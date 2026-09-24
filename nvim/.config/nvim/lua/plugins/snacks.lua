@@ -5,6 +5,7 @@ return {
       sources = {
         explorer = {
           hidden = true, -- show hidden files
+          ignored = true, -- show gitignored files
         },
       },
     },
