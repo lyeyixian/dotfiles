@@ -16,6 +16,7 @@ setup="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/setup"
 "$setup/common/tmux.sh"
 "$setup/common/nvim.sh"
 "$setup/common/claude.sh"
+"$setup/common/skills.sh"
 "$setup/common/zsh.sh"
 "$setup/linux/login-shell.sh"
 

@@ -18,7 +18,6 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "claude-fable-5-1[1m]",
   "worktree": {
     "baseRef": "fresh"
   },
@@ -77,6 +76,19 @@
       "**Trusted repo**: lyeyixian/actual-budget-server (github.com), the working directory this session started in — PUBLIC repo, so only this repo's own work belongs in commits/pushes here; `.env` and `data/` remain excluded regardless of visibility",
       "**Org-specific CLIs**: None configured",
       "routine under lyeyixian/ prefix: git and gh operations scoped to lyeyixian/actual-budget-server and lyeyixian/dotfiles only"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.skills/hooks/unslop-context.sh"
+          }
+        ]
+      }
     ]
   }
 }

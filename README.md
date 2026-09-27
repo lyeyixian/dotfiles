@@ -19,7 +19,7 @@ Read the tree that way and you always know where a file will land.
 | `nvim`        | `~/.config/nvim/`                                                                                       | Neovim on LazyVim                       |
 | `linearmouse` | `~/.config/linearmouse/linearmouse.json`                                                                | LinearMouse pointer settings            |
 | `opencode`    | `~/.config/opencode/opencode.json`                                                                      | opencode config                         |
-| `claude`      | `~/.claude/CLAUDE.md`, `~/.claude/settings.json`, `~/.claude/statusline-command.sh`, `~/.claude/skills/` | Claude Code memory, settings, skills    |
+| `claude`      | `~/.claude/CLAUDE.md`, `~/.claude/settings.json`, `~/.claude/statusline-command.sh`                      | Claude Code memory and settings         |
 
 Four things here are not Stow packages:
 
@@ -100,6 +100,7 @@ login shell, which a Mac has out of the box.
 | `setup/common/tmux.sh`       | tpm, `stow tmux`, installs the tmux plugins headless                  |
 | `setup/common/nvim.sh`       | `stow nvim`, installs the plugins pinned in `lazy-lock.json` headless |
 | `setup/common/claude.sh`     | `stow claude`, installs Claude Code if missing, adds the Linear MCP server |
+| `setup/common/skills.sh`     | clones [my skills](https://github.com/lyeyixian/skills) to `~/.skills` and links each skill into `~/.agents/skills` and `~/.claude/skills` |
 | `setup/common/zsh.sh`        | oh-my-zsh, Powerlevel10k, the two plugins, `stow zsh`                 |
 
 They share `setup/helper/lib.sh`. Its `link` function is `stow -R` with one extra
@@ -173,10 +174,9 @@ dangling symlink in `$HOME` goes away.
 
 This matters most for `claude`. Because `~/.claude/` already exists as a real
 directory, Stow links each file individually instead of the folder as a whole, so
-every new file needs a restow. Claude Code skills live at
-`claude/.claude/skills/<name>/SKILL.md`, and a restow is what puts them in
-`~/.claude/skills/`. A running Claude Code session picks up a new skill on its own,
-no restart needed.
+every new file needs a restow. Skills are not here. They live in
+[lyeyixian/skills](https://github.com/lyeyixian/skills), and `setup/common/skills.sh`
+links them.
 
 ## When something goes wrong
 
