@@ -100,7 +100,7 @@ login shell, which a Mac has out of the box.
 | `setup/common/tmux.sh`       | tpm, `stow tmux`, installs the tmux plugins headless                  |
 | `setup/common/nvim.sh`       | `stow nvim`, installs the plugins pinned in `lazy-lock.json` headless |
 | `setup/common/claude.sh`     | `stow claude`, installs Claude Code if missing, adds the Linear MCP server |
-| `setup/common/skills.sh`     | clones [my skills](https://github.com/lyeyixian/skills) to `~/.skills` and links each skill into `~/.agents/skills` and `~/.claude/skills` |
+| `setup/common/skills.sh`     | clones or updates [my skills](https://github.com/lyeyixian/skills) at `~/.skills` and links each skill into `~/.agents/skills` and `~/.claude/skills` |
 | `setup/common/zsh.sh`        | oh-my-zsh, Powerlevel10k, the two plugins, `stow zsh`                 |
 
 They share `setup/helper/lib.sh`. Its `link` function is `stow -R` with one extra

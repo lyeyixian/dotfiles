@@ -1,12 +1,19 @@
 #!/usr/bin/env bash
-# Clone my skills library to ~/.skills and link each skill into the folders
+# Clone or update my skills library at ~/.skills, then link each skill into the folders
 # agents read: ~/.agents/skills for any agent, ~/.claude/skills for Claude Code.
 . "$(dirname "${BASH_SOURCE[0]}")/../helper/lib.sh"
 
 SKILLS="$HOME/.skills"
 
 step "skills library"
-clone_if_missing https://github.com/lyeyixian/skills "$SKILLS"
+if [ -d "$SKILLS/.git" ]; then
+  # Fast-forward only, so local edits or unpushed commits are never merged
+  # or overwritten. Linking still runs if the pull can't.
+  git -C "$SKILLS" pull --ff-only -q && echo "pulled $SKILLS" ||
+    echo "could not fast-forward $SKILLS, linking what is there"
+else
+  clone_if_missing https://github.com/lyeyixian/skills "$SKILLS"
+fi
 
 step "link skills"
 for dest in "$HOME/.agents/skills" "$HOME/.claude/skills"; do
