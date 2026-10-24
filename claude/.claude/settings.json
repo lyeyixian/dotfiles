@@ -85,7 +85,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.skills/hooks/unslop-context.sh"
+            "command": "$HOME/.skills/hooks/writing-context.sh"
           }
         ]
       }
